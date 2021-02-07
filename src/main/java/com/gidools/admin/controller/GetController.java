@@ -14,8 +14,7 @@ public class GetController {
 
     @GetMapping("/getParameter")
     public String getParameter(@RequestParam String id, @RequestParam(name = "password") String pwd) {
-        String password = pwd;
-        System.out.println("id : " + id + ", password : " + password);
+        System.out.println("id : " + id + ", password : " + pwd);
         return "Hi getParameter";
     }
 
