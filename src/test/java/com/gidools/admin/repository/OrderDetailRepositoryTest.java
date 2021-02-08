@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class OrderDetailRepositoryTest extends AdminApplicationTests {
@@ -15,15 +16,21 @@ public class OrderDetailRepositoryTest extends AdminApplicationTests {
 
     @Test
     void create() {
-//        OrderDetail orderDetail = OrderDetail.builder()
-//                .orderAt(LocalDateTime.now())
-//                .userId(1L)
-//                .itemId(1L)
-//                .build();
-//
-//        OrderDetail created = orderDetailRepository.save(orderDetail);
-//
-//        Assertions.assertNotNull(created);
+        OrderDetail orderDetail = OrderDetail.builder()
+                .orderGroupId(1L)
+                .itemId(1L)
+                .status("registered")
+                .arrivalDate(LocalDateTime.now().plusDays(2))
+                .quantity(10)
+                .totalPrice(BigDecimal.valueOf(900000))
+                .createdAt(LocalDateTime.now())
+                .createdBy("Jack")
+                .build();
+
+        OrderDetail created = orderDetailRepository.save(orderDetail);
+
+        Assertions.assertNotNull(created);
+        System.out.println("OrderDetail " + created);
     }
 
 }

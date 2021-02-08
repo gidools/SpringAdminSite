@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class ItemRepositoryTest extends AdminApplicationTests {
@@ -17,8 +18,16 @@ public class ItemRepositoryTest extends AdminApplicationTests {
     @Test
     void create() {
         Item item = Item.builder().name("노트북")
-                .price(100000)
-                .content("삼성노트북")
+                .status("Unregistered")
+                .name("삼성노트북")
+                .title("삼성 노트북 그램")
+                .content("2021년형 노트북입니다.")
+                .price(1000000)
+                .brandName("삼성")
+                .partnerId(1L)
+                .registeredAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now())
+                .createdBy("Partner01")
                 .build();
 
         Item created = itemRepository.save(item);
