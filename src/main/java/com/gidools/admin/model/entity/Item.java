@@ -21,6 +21,8 @@ public class Item {
     private String name;
     private Integer price;
     private String content;
+
+    // LAZY : select * from item where id = ?
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     private List<OrderDetail> orderDetailList;
 

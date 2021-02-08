@@ -27,6 +27,7 @@ public class ItemRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
+    @Transactional
     void read() {
         Optional<Item> item = itemRepository.findById(1L);
 

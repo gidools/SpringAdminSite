@@ -39,7 +39,8 @@ public class UserRepositoryTest extends AdminApplicationTests {
     @Test
     @Transactional
     public void readById() {
-        Optional<User> user = userRepository.findById(1L);
+        // select * from user where id = ?
+        Optional<User> user = userRepository.findByAccount("Jack");
 
         user.ifPresent(selectedUser -> {
             selectedUser.getOrderDetailList().forEach(detail -> {
