@@ -19,34 +19,41 @@ public class UserRepositoryTest extends AdminApplicationTests {
     @Test
     public void create() {
         User user = User.builder()
-                .account("Jack")
+                .account("Tester1")
+                .password("testtest")
+                .status("Registered")
                 .email("Tester1@maxst.com")
                 .phoneNumber("010-2206-2222")
+                .registeredAt(LocalDateTime.now())
                 .createdAt(LocalDateTime.now())
-                .createdBy("Tester1")
+                .createdBy("Jack")
                 .build();
 
-        userRepository.save(user);
-        System.out.println("new User : " + user);
+        User created = userRepository.save(user);
+
+        Assertions.assertNotNull(created);
     }
 
     @Test
     public void read() {
-        List<User> users = userRepository.findAll();
-        System.out.println("users : " + users);
+        User user = userRepository.findFirstByPhoneNumberOrderById("010-2206-2222");
+
+        System.out.println("user : " + user);
+
+        Assertions.assertNotNull(user);
     }
 
     @Test
     @Transactional
     public void readById() {
         // select * from user where id = ?
-        Optional<User> user = userRepository.findByAccount("Jack");
-
-        user.ifPresent(selectedUser -> {
-            selectedUser.getOrderDetailList().forEach(detail -> {
-                System.out.println("Item : " + detail.getItem());
-            });
-        });
+//        Optional<User> user = userRepository.findByAccount("Jack");
+//
+//        user.ifPresent(selectedUser -> {
+//            selectedUser.getOrderDetailList().forEach(detail -> {
+//                System.out.println("Item : " + detail.getItem());
+//            });
+//        });
     }
 
     @Test
