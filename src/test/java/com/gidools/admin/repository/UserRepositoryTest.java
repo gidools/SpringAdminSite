@@ -17,14 +17,13 @@ public class UserRepositoryTest extends AdminApplicationTests {
     private UserRepository userRepository;
 
     @Test
-    @Transactional
     public void create() {
         User user = User.builder()
                 .account("Jack")
-                .email("Tester2@maxst.com")
-                .phoneNumber("010-2206-3333")
+                .email("Tester1@maxst.com")
+                .phoneNumber("010-2206-2222")
                 .createdAt(LocalDateTime.now())
-                .createdBy("Tester3")
+                .createdBy("Tester1")
                 .build();
 
         userRepository.save(user);
@@ -32,7 +31,6 @@ public class UserRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
-    @Transactional
     public void read() {
         List<User> users = userRepository.findAll();
         System.out.println("users : " + users);
@@ -41,16 +39,16 @@ public class UserRepositoryTest extends AdminApplicationTests {
     @Test
     @Transactional
     public void readById() {
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(1L);
 
         user.ifPresent(selectedUser -> {
-            System.out.println("user : " + selectedUser);
-            System.out.println("email : " + selectedUser.getEmail());
+            selectedUser.getOrderDetailList().forEach(detail -> {
+                System.out.println("Item : " + detail.getItem());
+            });
         });
     }
 
     @Test
-    @Transactional
     public void update() {
         Optional<User> user = userRepository.findById(3L);
 
