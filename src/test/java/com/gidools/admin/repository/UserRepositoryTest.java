@@ -1,6 +1,7 @@
 package com.gidools.admin.repository;
 
 import com.gidools.admin.AdminApplicationTests;
+import com.gidools.admin.enumclass.UserStatus;
 import com.gidools.admin.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,12 @@ public class UserRepositoryTest extends AdminApplicationTests {
     private UserRepository userRepository;
 
     @Test
+    @Transactional
     public void create() {
         User user = User.builder()
                 .account("Tester1")
                 .password("testtest")
-                .status("Registered")
+                .status(UserStatus.REGISTERED)
                 .email("Tester1@maxst.com")
                 .phoneNumber("010-2206-3333")
                 .registeredAt(LocalDateTime.now())
@@ -55,6 +57,7 @@ public class UserRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
+    @Transactional
     public void update() {
         Optional<User> user = userRepository.findById(3L);
 

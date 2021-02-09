@@ -1,6 +1,7 @@
 package com.gidools.admin.repository;
 
 import com.gidools.admin.AdminApplicationTests;
+import com.gidools.admin.enumclass.ItemStatus;
 import com.gidools.admin.model.entity.Item;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,9 +17,10 @@ public class ItemRepositoryTest extends AdminApplicationTests {
     private ItemRepository itemRepository;
 
     @Test
+    @Transactional
     void create() {
         Item item = Item.builder().name("노트북")
-                .status("Unregistered")
+                .status(ItemStatus.REGISTERED)
                 .name("삼성노트북")
                 .title("삼성 노트북 그램")
                 .content("2021년형 노트북입니다.")
