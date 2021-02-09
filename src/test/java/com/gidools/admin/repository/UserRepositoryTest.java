@@ -22,10 +22,8 @@ public class UserRepositoryTest extends AdminApplicationTests {
                 .password("testtest")
                 .status("Registered")
                 .email("Tester1@maxst.com")
-                .phoneNumber("010-2206-2222")
+                .phoneNumber("010-2206-3333")
                 .registeredAt(LocalDateTime.now())
-                .createdAt(LocalDateTime.now())
-                .createdBy("Jack")
                 .build();
 
         User created = userRepository.save(user);
