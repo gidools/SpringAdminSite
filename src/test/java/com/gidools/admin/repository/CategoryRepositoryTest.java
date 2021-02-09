@@ -5,6 +5,7 @@ import com.gidools.admin.model.entity.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class CategoryRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
+    @Transactional
     void read() {
         Optional<Category> category = categoryRepository.findByType("Computer");
 
