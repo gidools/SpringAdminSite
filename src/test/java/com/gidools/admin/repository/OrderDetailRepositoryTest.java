@@ -17,8 +17,6 @@ public class OrderDetailRepositoryTest extends AdminApplicationTests {
     @Test
     void create() {
         OrderDetail orderDetail = OrderDetail.builder()
-                .orderGroupId(1L)
-                .itemId(1L)
                 .status("registered")
                 .arrivalDate(LocalDateTime.now().plusDays(2))
                 .quantity(10)

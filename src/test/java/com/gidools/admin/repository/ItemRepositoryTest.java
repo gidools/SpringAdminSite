@@ -24,7 +24,6 @@ public class ItemRepositoryTest extends AdminApplicationTests {
                 .content("2021년형 노트북입니다.")
                 .price(1000000)
                 .brandName("삼성")
-                .partnerId(1L)
                 .registeredAt(LocalDateTime.now())
                 .createdAt(LocalDateTime.now())
                 .createdBy("Partner01")
@@ -43,7 +42,9 @@ public class ItemRepositoryTest extends AdminApplicationTests {
         Assertions.assertTrue(item.isPresent());
 
         item.ifPresent(i -> {
-            System.out.println("item : " + i);
+            i.getOrderDetailList().forEach(orderDetail -> {
+                System.out.println("Order detail : " + orderDetail);
+            });
         });
     }
 

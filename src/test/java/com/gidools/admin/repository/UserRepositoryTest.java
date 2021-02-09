@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 public class UserRepositoryTest extends AdminApplicationTests {
@@ -35,25 +34,26 @@ public class UserRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
+    @Transactional
     public void read() {
         User user = userRepository.findFirstByPhoneNumberOrderById("010-2206-2222");
+        user.getOrderGroupList().forEach(orderGroup -> {
+            System.out.println(orderGroup.getTotalPrice());
+            System.out.println(orderGroup.getRevAddress());
+            System.out.println(orderGroup.getRevName());
+
+            System.out.println("-------------------주문상세----------------");
+            orderGroup.getOrderDetailList().forEach(orderDetail -> {
+                System.out.println("Order detail: " + orderDetail);
+                System.out.println("주문 상품 : " + orderDetail.getItem());
+                System.out.println("파트너 : " + orderDetail.getItem().getPartner());
+                System.out.println("카테고리 : " + orderDetail.getItem().getPartner().getCategory());
+            });
+        });
 
         System.out.println("user : " + user);
 
         Assertions.assertNotNull(user);
-    }
-
-    @Test
-    @Transactional
-    public void readById() {
-        // select * from user where id = ?
-//        Optional<User> user = userRepository.findByAccount("Jack");
-//
-//        user.ifPresent(selectedUser -> {
-//            selectedUser.getOrderDetailList().forEach(detail -> {
-//                System.out.println("Item : " + detail.getItem());
-//            });
-//        });
     }
 
     @Test

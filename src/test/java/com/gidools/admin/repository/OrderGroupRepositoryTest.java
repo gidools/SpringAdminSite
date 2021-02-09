@@ -31,7 +31,6 @@ public class OrderGroupRepositoryTest extends AdminApplicationTests {
                 .arrivalDate(LocalDateTime.now())
                 .createdAt(LocalDateTime.now())
                 .createdBy("Jack")
-                .userId(1L)
                 .build();
 
         OrderGroup created = orderGroupRepository.save(orderGroup);
